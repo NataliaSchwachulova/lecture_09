@@ -30,10 +30,29 @@ def linear_search(sequence, number):
     return output
 
 
+def pattern_search(sequence, pattern):
+    idxes = []
+    for idx in range(0, (len(sequence) - (len(pattern) -1))):
+        idx_sequence = idx
+        counter = 0
+        for idx_pattern in range(0, len(pattern)):
+            if sequence[idx_sequence] == pattern[idx_pattern]:
+                counter += 1
+                idx_sequence += 1
+        if counter == len(pattern):
+            idxes.append(idx)
+    output = set(idxes)
+    return output
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
-    print(linear_search(sequential_data, 9))
+    print(linear_search(sequential_data, 0))
+    dna_data = read_data("sequential.json", "dna_sequence")
+    print(dna_data)
+    num_of_patterns = pattern_search(dna_data, "GCA")
+    print(num_of_patterns)
 
 
 if __name__ == '__main__':
