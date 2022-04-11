@@ -19,9 +19,21 @@ def read_data(file_name, field):
         return data[field]
 
 
+def linear_search(sequence, number):
+    num_of_apperances = 0
+    idxes = []
+    for idx in range(0, len(sequence)):
+        if sequence[idx] == number:
+            num_of_apperances += 1
+            idxes.append(idx)
+    output = {"idxes": idxes, "num_of_apperances": num_of_apperances}
+    return output
+
+
 def main():
-    unordered_nums = read_data("sequential.json", "unordered_numbers")
-    print(unordered_nums)
+    sequential_data = read_data("sequential.json", "unordered_numbers")
+    print(sequential_data)
+    print(linear_search(sequential_data, 9))
 
 
 if __name__ == '__main__':
