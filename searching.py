@@ -35,10 +35,15 @@ def pattern_search(sequence, pattern):
     for idx in range(0, (len(sequence) - (len(pattern) -1))):
         idx_sequence = idx
         counter = 0
-        for idx_pattern in range(0, len(pattern)):
+        """for idx_pattern in range(0, len(pattern)):
             if sequence[idx_sequence] == pattern[idx_pattern]:
                 counter += 1
-                idx_sequence += 1
+                idx_sequence += 1"""
+        for idx_pattern in range(0, len(pattern)):
+            if sequence[idx_sequence] != pattern[idx_pattern]:
+                break
+            counter += 1
+            idx_sequence += 1
         if counter == len(pattern):
             idxes.append(idx)
     output = set(idxes)
@@ -48,7 +53,7 @@ def pattern_search(sequence, pattern):
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
-    print(linear_search(sequential_data, 0))
+    print(linear_search(sequential_data, 8))
     dna_data = read_data("sequential.json", "dna_sequence")
     print(dna_data)
     num_of_patterns = pattern_search(dna_data, "GCA")
